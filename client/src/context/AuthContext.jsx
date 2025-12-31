@@ -50,9 +50,7 @@ const registerUser = useCallback(async (e) => {
     if (response.error) {
         return setRegisterError(response);
     }
-  
-    localStorage.setItem("User", JSON.stringify(response));
-    setUser(response);
+    return { success: true };
 }, [registerInfo]);
 
 const loginUser = useCallback(async (e) => {

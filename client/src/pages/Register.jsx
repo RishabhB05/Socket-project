@@ -1,12 +1,21 @@
-import {useContext} from 'react';
-import {Alert, Button, Row,Col,Stack ,  Form, FormGroup, FormLabel, FormControl, Container} from 'react-bootstrap';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {Alert, Button, Row,Col,Stack ,  Form} from 'react-bootstrap';
 import { AuthContext } from '../context/AuthContext';
 
 const Register = () => {
-
+    const navigate = useNavigate();
     const  {registerInfo, updateRegisterInfo, registerUser, isRegisterLoading, registerError} = useContext(AuthContext);
+
+    const handleRegister = async (e) => {
+        const result = await registerUser(e);
+        if (result?.success) {
+            navigate('/login');
+        }
+    };
+
     return ( <>
-    <Form onSubmit={registerUser}>
+    <Form onSubmit={handleRegister}>
 
         <Row style={{height : "100vh", justifyContent:"center", alignItems:"center", paddingTop:"100px"}}>
             <Col>
